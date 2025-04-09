@@ -1,166 +1,83 @@
-# Create an HTML-based one-page personal site inspired by the InBio template
-from pathlib import Path
-import zipfile
-
-# Folder to hold website files
-site_dir = Path("/mnt/data/inbio_style_site")
-site_dir.mkdir(exist_ok=True)
-
-# Basic HTML template with stylish single-page layout (InBio-inspired)
-html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Amit Kumar - Portfolio</title>
+  <meta charset="UTF-8">
+  <title>Amit Kumar - Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      color: #333;
-      background: #f9f9f9;
-      scroll-behavior: smooth;
+      margin: 0;
+      background: #f7f7f7;
     }
     header {
-      background: linear-gradient(to right, #667eea, #764ba2);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background: #e9e4f0;
     }
     header img {
-      width: 160px;
-      height: 160px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      margin: 1rem 0;
-      border: 4px solid white;
+      object-fit: cover;
+      border: 3px solid #764ba2;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    nav {
-      background: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      padding: 1rem;
-    }
-    nav ul li {
-      margin: 0 1rem;
-    }
-    nav a {
-      text-decoration: none;
-      color: #444;
+    .affiliation {
+      text-align: right;
       font-weight: 500;
     }
-    section {
-      padding: 4rem 2rem;
-      max-width: 900px;
-      margin: auto;
+    nav {
+      background: #764ba2;
+      padding: 1rem;
+      text-align: center;
     }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #764ba2;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
+    .content {
+      padding: 2rem;
+      text-align: center;
     }
     footer {
-      background: #eee;
       text-align: center;
-      padding: 2rem;
+      margin-top: 2rem;
       font-size: 0.9rem;
+      color: #777;
     }
-    a { color: #667eea; text-decoration: none; }
-    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-
-<header>
-  <img src="photo.jpg" alt="Amit Kumar">
-  <h1>Amit Kumar</h1>
-  <p>PhD (IMSc Chennai) | Postdoc at ICTS Bangalore</p>
-</header>
-
-<nav>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#cv">CV</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#teaching">Teaching</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<section id="about">
-  <h2>About Me</h2>
-  <p>I am a theoretical physicist with a PhD from The Institute of Mathematical Sciences (IMSc), Chennai. My research spans gas dynamics, molecular dynamics simulations, and non-equilibrium fluid mechanics. I am currently a postdoctoral researcher at the International Centre for Theoretical Sciences (ICTS), Bangalore.</p>
-</section>
-
-<section id="research">
-  <h2>Research Interests</h2>
-  <ul>
-    <li>Shock propagation and gas dynamics</li>
-    <li>Molecular dynamics simulations</li>
-    <li>Euler and Navier-Stokes equations</li>
-    <li>Non-equilibrium fluid mechanics</li>
-    <li>Active matter systems</li>
-    <li>Charged/uncharged ring and linear polymers</li>
-  </ul>
-</section>
-
-<section id="cv">
-  <h2>Curriculum Vitae</h2>
-  <p><a href="#">Download CV (Coming Soon)</a></p>
-</section>
-
-<section id="projects">
-  <h2>Projects</h2>
-  <p>Descriptions and links to my key research projects will be updated here soon.</p>
-</section>
-
-<section id="blog">
-  <h2>Blog</h2>
-  <p>Personal posts on science, simulation techniques, and research life. (Coming Soon)</p>
-</section>
-
-<section id="teaching">
-  <h2>Teaching</h2>
-  <p>Information on teaching, mentoring, and outreach will appear here.</p>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:getkamit@gmail.com">getkamit@gmail.com</a></p>
-  <p>Google Scholar: <a href="https://scholar.google.com/citations?user=WygC-80AAAAJ&hl=en" target="_blank">Scholar Profile</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/amit-kumar-218440197/" target="_blank">LinkedIn Profile</a></p>
-</section>
-
-<footer>
-  &copy; 2025 Amit Kumar. Built with love and GitHub Pages.
-</footer>
-
+  <header>
+    <img src="photo.jpg" alt="Amit Kumar Photo">
+    <div class="affiliation">
+      <h2>Amit Kumar</h2>
+      <p>Postdoctoral Fellow (soon)</p>
+      <p>ICTS Bangalore</p>
+      <p>PhD, IMSc Chennai</p>
+    </div>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="cv.html">CV</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html">Blog</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="content">
+    <h2>Welcome!</h2>
+    <p>Thank you for visiting my personal academic website. Stay tuned for updates on my research, teaching, and projects!</p>
+  </div>
+  <footer>
+    &copy; 2025 Amit Kumar
+  </footer>
 </body>
 </html>
-"""
-
-# Write HTML file
-index_file = site_dir / "index.html"
-index_file.write_text(html, encoding="utf-8")
-
-# Zip the site
-zip_path = Path("/mnt/data/inbio_style_portfolio.zip")
-with zipfile.ZipFile(zip_path, "w") as zipf:
-    zipf.write(index_file, arcname="index.html")
-
-zip_path.name  # Return zip name for download
 
